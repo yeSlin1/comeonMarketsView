@@ -85,7 +85,7 @@
 						<dd>件</dd>
 					</dl>
 					<div class="buy">
-						<input id="addCart" class="addCart" value="加入购物车" type="button"
+						<input id="addCart" style="background:" class="addCart" value="加入购物车" type="button"
 							onclick="saveCart()">
 					</div>
 				</div>
@@ -141,5 +141,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+div.productContent .buy .addCart {
+	width: 127px;
+	height: 36px;
+	line-height: 34px;
+	float: left;
+	padding-left: 20px;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: "Microsoft YaHei";
+	cursor: pointer;
+	border: none;
+	background: url(../assets/product.gif) 0px -600px no-repeat;
+}
 </style>

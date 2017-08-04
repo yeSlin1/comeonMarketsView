@@ -3,17 +3,8 @@
   <div class="span10 last">
 <div class="topNav clearfix">
   <ul>
-        <li id="headerLogin" class="headerLogin" style="display: list-item;">
 
-              <router-link to="/login">登录 </router-link>
-
-              |
-    				</li>
-    				<li id="headerRegister" class="headerRegister"
-    					style="display: list-item;">
-                  <router-link to="/register">注册 </router-link>|
-    				</li>
-    <!--  <li id="headerLogin" class="headerLogin" style="display: list-item;">
+      <li id="headerLogin" class="headerLogin" style="display: list-item;">
         欢迎您：
       </li>
       <li id="headerRegister" class="headerRegister"
@@ -21,7 +12,7 @@
       <li id="headerRegister" class="headerRegister"
         style="display: list-item;"><a
         href=" #">退出</a>|
-      </li>-->
+      </li>
     <li>
 <router-link to="/shop">会员中心 </router-link>
     |</li>
@@ -52,7 +43,7 @@
 
 <script>
 export default {
-  name: 'topmenu',
+  name: 'order',
   data () {
     return {
     }
