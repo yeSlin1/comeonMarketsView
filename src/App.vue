@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Hello from './components/Hello' 
 import Topmenu from './components/menu'
 import footers from './components/footer'
 
@@ -30,3 +30,4 @@ export default {
   margin-top: 60px;
 }
 </style>
+//
