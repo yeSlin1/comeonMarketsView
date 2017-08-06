@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
 import Topmenu from './components/menu'
 import footers from './components/footer'
 
@@ -15,7 +14,7 @@ import headers from './components/header'
 export default {
   name: 'app',
   components: {
-    Hello,Topmenu,footers,headers
+    Topmenu,footers,headers
   }
 }
 </script>
