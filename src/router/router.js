@@ -8,9 +8,14 @@ import index from './../components/index'
 import order from './../components/order'
 import play from './../components/play'
 import myorder from './../components/orderList'
+
+import index2 from './../components/index2'
 const routers = [
   {
     path: '/',
+    component: index2
+  },{
+    path: '/index',
     component: index
   },{
     path: '/myorder',

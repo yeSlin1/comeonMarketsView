@@ -1,4 +1,6 @@
   <template>
+    <div>
+    <headers></headers>
     <div class="container index">
      	<div class="span24">
             <div id="newProduct" class="newProduct clearfix">
@@ -83,14 +85,21 @@
     			</div>
     		</div>
     	</div>
+<footers></footers>
+      </div>
   </template>
 
   <script>
+  import footers from './../components/footer'
+
+  import headers from './../components/header'
   export default {
     name: 'index',
     data () {
       return {
       }
+    },components: {
+       footers,headers
     }
   }
   </script>
