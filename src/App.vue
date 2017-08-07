@@ -1,9 +1,16 @@
 <template>
   <div id="app">
+<<<<<<< HEAD
      <!-- <headers></headers> -->
      <router-view></router-view>
     <!-- <footers></footers> -->
 	<!-- <index2></index2> -->
+=======
+     <!--<headers></headers>
+     <router-view></router-view>
+    <footers></footers>-->
+	<index2></index2>
+>>>>>>> 2d18919f1e416e9422e404e51ff16c080a18ce35
   </div>
 </template>
 
