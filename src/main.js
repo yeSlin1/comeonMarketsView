@@ -6,10 +6,18 @@ import routes from './router/router.js'
 
 import VueRouter from 'vue-router'
 import VueSource from 'vue-resource'
+
+/*bootstrap-vue文件*/
+import BootstrapVue from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue);
+
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(VueSource)
+
 const  router = new VueRouter({
   routes: routes
 })
