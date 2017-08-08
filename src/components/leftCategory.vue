@@ -3,80 +3,39 @@
 
 <div class="span6">
   <div class="hotProductCategory">
-  <dl>
-      <dt>
-       <a href="#">女装男装</a>
-        </dt>
-        <dd>
-           <a href="#">潮流女装</a>
-      </dd>
-      <dd>
-          <a href="#">初冬羽绒</a>
-     </dd>
-      <dd>
-          <a href="#">冬季外套</a>
-      </dd>
-      <dd>
-          <a href="#">精选男装</a>
-      </dd>
-      <dd>
-          <a href="#">温暖毛衣</a>
-      </dd>
-      <dd>
-          <a href="#">冬季外套</a>
-      </dd>
-   </dl>
-   <dl>
-       <dt>
-        <a href="#">运动户外</a>
-         </dt>
-         <dd>
-            <a href="#">运动鞋</a>
-       </dd>
-       <dd>
-           <a href="#">运动服</a>
-      </dd>
-       <dd>
-           <a href="#">户外运动</a>
-       </dd>
-       <dd>
-           <a href="#">健身装备</a>
-       </dd>
-       <dd>
-           <a href="#">骑行装备</a>
-       </dd>
-    </dl>
-    <dl>
+  <dl v-for="cetegory in cetegorys">
         <dt>
-         <a href="#">珠宝配饰</a>
-          </dt>
-          <dd>
-             <a href="#">服装配饰</a>
+        <router-link :to="{ name: 'shoppage', params: {cid:cetegory.cid} }">
+          {{cetegory.firstname}}
+           </router-link>
+         </dt>
+        <dd v-for="second in cetegory.scondname">
+          <router-link :to="{ name: 'shoppagecs', params: {csid:second.csid}}">
+           {{second.secon}}
+           </router-link>
         </dd>
-        <dd>
-            <a href="#">珠宝首饰</a>
-       </dd>
-        <dd>
-            <a href="#">品质手表</a>
-        </dd>
-        <dd>
-            <a href="#">时尚饰品</a>
-        </dd>
-        <dd>
-            <a href="#">眼睛装饰</a>
-        </dd>
-     </dl>
+   </dl>
   </div>
 </div>
 </template>
-
 <script>
 export default {
   name: 'leftCategory',
   data () {
     return {
+      cetegorys:[]
     }
-  }
+  }, created (){
+
+      this.$http.get('http://localhost:9090/categorysecond/list').then(
+        function(response){
+        this.cetegorys = response.body;
+        },
+        function(response){
+          console.log("error")
+        }
+      )
+    }
 }
 </script>
 

@@ -6,16 +6,31 @@ import routes from './router/router.js'
 
 import VueRouter from 'vue-router'
 import VueSource from 'vue-resource'
+
+/*bootstrap-vue�ļ�*/
+// import BootstrapVue from 'bootstrap-vue';
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+// Vue.use(BootstrapVue);
+import axios from 'axios'
+Vue.prototype.$ajax=axios
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(VueSource)
-const  router = new VueRouter({
+
+/*vuex store*/
+import Vuex from 'vuex'
+import store from './vuex/store'
+Vue.use(Vuex)
+
+const  router = new VueRouter({ 
   routes: routes
 })
 /* eslint-disable no-new */
 new Vue({
   router,
+  store,
   el: '#app',
   template: '<App/>',
   components: { App }

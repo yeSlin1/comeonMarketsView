@@ -12,13 +12,13 @@
       					<li><a target="_blank"></a></li>
       				</ul>
     				<ul class="tabContent" style="display: block;">
-    						<li>  <router-link to="/shopdetail"><img
-    								src="./../assets/shop.jpg"
-    								style="display: block;"></router-link  ></li>
-                    <li><router-link to="/shopdetail">
-                       <img
-                         src="./../assets/shop.jpg"
-                         style="display: block;"></router-link  ></li>
+    						<li v-for="product in productList">
+
+               <router-link :to="{ name: 'shopdetail', params: {productid:product.pid} }">
+                     <img
+    								v-bind:src='"http://localhost:9090/"+ product.image'
+    								style="display: block;"></router-link  >
+                  </li>
     				</ul>
     			</div>
     		</div>
@@ -34,15 +34,11 @@
     					<li><a target="_blank"></a></li>
     				</ul>
     				<ul class="tabContent" style="display: block;">
-              <li><router-link to="/shopdetail">
-                 <img
-                   src="./../assets/shop.jpg"
-                   style="display: block;"></router-link  ></li>
-               <li><router-link to="/shopdetail">
-                      <img
-                        src="./../assets/shop.jpg"
-                        style="display: block;"></router-link  ></li>
-                 </ul>
+              <li v-for="product in timeproductList">
+                  <router-link :to="{ name: 'shopdetail', params: {productid:product.pid} }"><img
+                  v-bind:src='"http://localhost:9090/"+ product.image'
+                  style="display: block;"></router-link  >
+                </li>
             </ul>
     				</ul>
     			</div>
@@ -75,9 +71,8 @@
     					<dd>
     						<a target="_blank">亿家卡</a> |
     					</dd>
-
     					<dd class="more">
-    						<a>更多</a>
+    						<a>更多 </a>
     					</dd>
     				</dl>
     			</div>
@@ -86,11 +81,38 @@
   </template>
 
   <script>
+  import footers from './../components/footer'
+
+  import headers from './../components/header'
   export default {
     name: 'index',
     data () {
-      return {
-      }
+      return{
+        productList: [ ],
+          timeproductList: [ ]
+     }
+    }, created (){
+
+        this.$http.get('http://localhost:9090/product/findAllByHot') .then(
+          function(response){
+          this.productList = response.body;
+          console.log(this.productList);
+          },
+          function(response){
+            console.log("error")
+          }
+        )
+        this.$http.get('http://localhost:9090/product/findAllByTime') .then(
+          function(response){
+          this.timeproductList = response.body;
+          console.log(this.productList);
+          },
+          function(response){
+            console.log("error")
+          }
+        )
+      },components: {
+       footers,headers
     }
   }
   </script>

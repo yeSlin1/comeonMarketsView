@@ -1,15 +1,35 @@
 <template>
-  <div class="hello">
+  <div class="span18 last">
+    <div id="result" class="result table clearfix">
+      <ul>
+      <li v-for="product in productList">
+         <router-link :to="{ name: 'shopdetail', params: {productid:product.pid} }"> <img    v-bind:src='"http://localhost:9090/"+ product.image'
+                        style="width: px;height:170px; display: inline-block;"/>
+                        <span style='color:green'>{{product.pname}}</span>
+                        <span class="price"> 商城价：
+                  ￥{{product.shop_price}}元
+              </span>
+         </router-link>
 
-  		<div class="container productList">
-    		<leftCategory></leftCategory>
-  			<router-view></router-view>
-  		</div>
+     </li>
+
+      </ul>
     </div>
+    <div class="pagination">
+  					<span>第{{page}}/{{pageNum}}页
+  					</span>
+  							<a class="firstPage"
+  								href="javascript:volid(0);" v-on:click="firstPage">&nbsp;</a>
+  							<a class="previousPage"
+  								href="javascript:volid(0);" v-on:click="previousPage">&nbsp;</a>
+   						<a class="nextPage"
+  								href="javascript:volid(0);" v-on:click="nextPage">&nbsp;</a>
+  							<a class="lastPage"
+  								href="javascript:volid(0);" v-on:click="lastPage">&nbsp;</a>
 
-      </div>
+  				</div>
+  </div>
 </template>
-
 <script>
 import leftCategory from './leftCategory'
 import Vue from 'vue'
@@ -19,21 +39,178 @@ import VueSource from 'vue-resource'
 Vue.use(VueRouter)
 Vue.use(VueSource)
 export default {
-  name: 'hello',
+  name: 'shoppage',
   data () {
-    return{     
+    return{
+      page:1,
+      pageNum:1,
+      productList: [],
+      cid:"",
+      csid:""
    }
-  } ,
+  }, created (){
+        var url = "http://localhost:9090/product/findByCategory";
+        var params = new URLSearchParams();
+        if (this.$route.params.cid !=undefined) {
+          params.append('cid', this.$route.params.cid);
+          this. cid = this.$route.params.cid;
+         }
+          if (this.$route.params.csid !=undefined) {
+          params.append('csid', this.$route.params.csid);
+              this. csid = this.$route.params.csid;
+        }
+        this.$ajax.post(url,params).then( res=>{
+              console.log(res.data);
+                console.log( this.productList);
+                this.pageNum = res.data[0].pagerNum/12;
+          if (res.data !=undefined) {
+             this.productList=res.data[0].list;
+           }
+        });
+    } ,
     components: {
      leftCategory
+   },methods:{
+     firstPage: function (event) {
+       this.page=1;
+       var url = "http://localhost:9090/product/findByCategory";
+       var params = new URLSearchParams();
+       params.append('pageindex', this.page);
+       if (this.cid !="") {
+         params.append('cid', this.cid);
+       }
+        if (this.csid !="") {
+         params.append('csid', this.csid);
+       }
+       this.$ajax.post(url,params).then( res=>{
+         console.log(res.data);
+           console.log( this.productList);
+           this.pageNum = res.data[0].pagerNum/12;
+       if (res.data !=undefined) {
+        this.productList=res.data[0].list;
+      }
+       });
+   },
+   previousPage: function (event) {
+if (  this.page !=1) {
+  this.page--;
+}
+var url = "http://localhost:9090/product/findByCategory";
+var params = new URLSearchParams();
+params.append('pageindex', this.page);
+if (this.cid !="") {
+  params.append('cid', this.cid);
+}
+ if (this.csid !="") {
+  params.append('csid', this.csid);
+}
+this.$ajax.post(url,params).then( res=>{
+  console.log(res.data);
+    console.log( this.productList);
+    this.pageNum = res.data[0].pagerNum/12;
+if (res.data !=undefined) {
+ this.productList=res.data[0].list;
+}
+});
+ },
+ nextPage: function (event) {
+   if (  this.page <(this.pageNum-1)) {
+     this.page++;
+   }
+   var url = "http://localhost:9090/product/findByCategory";
+   var params = new URLSearchParams();
+   params.append('pageindex', this.page);
+   if (this.cid !="") {
+     params.append('cid', this.cid);
+   }
+    if (this.csid !="") {
+     params.append('csid', this.csid);
+   }
+   this.$ajax.post(url,params).then( res=>{
+     console.log(res.data);
+       console.log( this.productList);
+       this.pageNum = res.data[0].pagerNum/12;
+   if (res.data !=undefined) {
+    this.productList=res.data[0].list;
+  }
+   });
+},
+lastPage: function (event) {
+     this.page=this.pageNum;
+     var url = "http://localhost:9090/product/findByCategory";
+     var params = new URLSearchParams();
+     params.append('pageindex', this.page);
+     if (this.cid !="") {
+       params.append('cid', this.cid);
+     }
+      if (this.csid !="") {
+       params.append('csid', this.csid);
+     }
+     this.$ajax.post(url,params).then( res=>{
+       console.log(res.data);
+         console.log( this.productList);
+         this.pageNum = res.data[0].pagerNum/12;
+     if (res.data !=undefined) {
+      this.productList=res.data[0].list;
     }
+     });
+}
+}
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 /* ---------- ProductList ---------- */
+div.pagination a.previousPage {
+	width: 18px;
+	padding: 0px;
+	background: url(../assets/common.gif) 0px -180px no-repeat;
+}
 
+div.pagination span.previousPage {
+	width: 18px;
+	cursor: default;
+	border: 1px solid #cccccc;
+	background: url(../assets/common.gif) -30px -180px no-repeat;
+}
+
+div.pagination a.nextPage {
+	width: 18px;
+	padding: 0px;
+	background: url(../assets/common.gif) 0px -210px no-repeat;
+}
+
+div.pagination span.nextPage {
+	width: 18px;
+	cursor: default;
+	border: 1px solid #cccccc;
+	background: url(../assets/common.gif) -30px -210px no-repeat;
+}
+
+div.pagination a.firstPage {
+	width: 18px;
+	padding: 0px;
+	background: url(../assets/common.gif) -60px -180px no-repeat;
+}
+
+div.pagination span.firstPage {
+	width: 18px;
+	cursor: default;
+	border: 1px solid #cccccc;
+	background: url(../assets/common.gif) -90px -180px no-repeat;
+}
+
+div.pagination a.lastPage {
+	width: 18px;
+	padding: 0px;
+	background: url(../assets/common.gif) -60px -210px no-repeat;
+}
+
+div.pagination span.lastPage {
+	width: 18px;
+	cursor: default;
+	border: 1px solid #cccccc;
+	background: url(../assets/common.gif) -90px -210px no-repeat;
+}
 div.productList .filter {
 	margin-bottom: 4px;
 }

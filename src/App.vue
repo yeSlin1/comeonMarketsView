@@ -1,8 +1,13 @@
 <template>
   <div id="app">
      <headers></headers>
-      <router-view></router-view>
-     <footers></footers>
+     <router-view></router-view>
+    <footers></footers>
+	<!-- <index2></index2> -->
+     <!--<headers></headers>
+     <router-view></router-view>
+    <footers></footers>-->
+
   </div>
 </template>
 
@@ -11,6 +16,10 @@ import Topmenu from './components/menu'
 import footers from './components/footer'
 
 import headers from './components/header'
+
+
+
+
 export default {
   name: 'app',
   components: {

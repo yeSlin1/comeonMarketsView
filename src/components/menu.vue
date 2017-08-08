@@ -6,7 +6,6 @@
         <li id="headerLogin" class="headerLogin" style="display: list-item;">
 
               <router-link to="/login">登录 </router-link>
-
               |
     				</li>
     				<li id="headerRegister" class="headerRegister"
@@ -14,7 +13,7 @@
                   <router-link to="/register">注册 </router-link>|
     				</li>
      <li id="headerLogin" class="headerLogin" style="display: list-item;">
-        欢迎您：小丰丰
+        {{ username }}
       </li>
       <li id="headerRegister" class="headerRegister"
         style="display: list-item;">
@@ -32,7 +31,7 @@
   </ul>
 </div>
 <div class="cart">
-<router-link to="/cart">我的购物车 </router-link>
+<router-link to="/cart">我的购物车{{ shopcarcount }} </router-link>
 </div>
 <div class="phone">
   客服热线: <strong>96008/53277764</strong>
@@ -41,14 +40,13 @@
 <div class="span24">
 <ul class="mainNav">
   <li> <router-link  to="/"><a href="#">首页</a></router-link>   |</li>
-  <li> <router-link  to="/productList"><a 	href="#">女装男装 </a> </router-link>|</li>
-
-  <li> <router-link  to="/productList"><a 	href="#">运动户外 </a> </router-link>|</li>
-  <li> <router-link  to="/productList"><a 	href="#">珠宝配饰 </a> </router-link>|</li>
-  <li> <router-link  to="/productList"><a 	href="#">手机数码 </a> </router-link>|</li>
-
-  <li> <router-link  to="/productList"><a 	href="#">家电电脑</a> </router-link>|</li>
-  <li> <router-link  to="/productList"><a 	href="#">护肤彩妆</a> </router-link>|</li>
+  <li v-for="cetegory in cetegorys">
+      <router-link :to="{ name: 'shoppage', params: {cid:cetegory.cid} }">
+     {{cetegory.cname}}
+     </router-link>|</li>
+     <!-- <a  href="javascript:volid(0);" v-on:click="goto" class="">
+           goto
+          </a> -->
 </ul>
 </div>
 </div>
@@ -60,8 +58,32 @@ export default {
   name: 'topmenu',
   data () {
     return {
+      cetegorys:[]
     }
-  }
+  },
+  computed:{
+    username(){
+      return this.$store.state.username
+    },
+    shopcarcount(){
+      return this.$store.state.shopcarcount
+    }
+  }, created (){
+
+      this.$http.get('http://localhost:9090/category/list').then(
+        function(response){
+        this.cetegorys = response.body;
+        },
+        function(response){
+          console.log("error")
+        }
+      )
+    },methods:{
+       goto: function (event) {
+
+         this.$router.go(0);
+       }
+    }
 }
 </script>
 

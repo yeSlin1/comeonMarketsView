@@ -23,7 +23,7 @@
 								<tr>
 									<th>用户名:</th>
 									<td><input type="text" id="username" name="user.username"
-										class="text" maxlength="20"></td>
+										class="text" maxlength="20" ></td>
 								</tr>
 								<tr>
 									<th>密&nbsp;&nbsp;码:</th>
@@ -41,6 +41,7 @@
 								<tr>
 									<th>&nbsp;</th>
 									<td><input type="submit" class="submit" value="登 录"></td>
+
 								</tr>
 								<tr class="register">
 									<th>&nbsp;</th>
@@ -60,6 +61,7 @@
 				</div>
 			</div>
 		</div>
+    <td><button @click="login">登陆</button></td>
 	</div>
 </template>
 
@@ -68,6 +70,11 @@ export default {
   name: 'login',
   data () {
     return {
+    }
+  },
+  methods:{
+    login(){
+      this.$store.commit("login","dddd")
     }
   }
 }

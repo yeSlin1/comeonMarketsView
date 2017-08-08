@@ -4,7 +4,7 @@
  * Copyright 2005-2013 dhcc.com.cn. All rights reserved.
  * Support: http://www.dhcc.com.cn
  * License: http://www.dhcc.com.cn/license
- * 
+ *
  * Style - Common
  * Version: 3.0
  */
@@ -988,57 +988,7 @@ div.pagination a:hover {
 	text-decoration: none;
 }
 
-div.pagination a.previousPage {
-	width: 18px;
-	padding: 0px;
-	background: url(../images/common.gif) 0px -180px no-repeat;
-}
 
-div.pagination span.previousPage {
-	width: 18px;
-	cursor: default;
-	border: 1px solid #cccccc;
-	background: url(../images/common.gif) -30px -180px no-repeat;
-}
-
-div.pagination a.nextPage {
-	width: 18px;
-	padding: 0px;
-	background: url(../images/common.gif) 0px -210px no-repeat;
-}
-
-div.pagination span.nextPage {
-	width: 18px;
-	cursor: default;
-	border: 1px solid #cccccc;
-	background: url(../images/common.gif) -30px -210px no-repeat;
-}
-
-div.pagination a.firstPage {
-	width: 18px;
-	padding: 0px;
-	background: url(../images/common.gif) -60px -180px no-repeat;
-}
-
-div.pagination span.firstPage {
-	width: 18px;
-	cursor: default;
-	border: 1px solid #cccccc;
-	background: url(../images/common.gif) -90px -180px no-repeat;
-}
-
-div.pagination a.lastPage {
-	width: 18px;
-	padding: 0px;
-	background: url(../images/common.gif) -60px -210px no-repeat;
-}
-
-div.pagination span.lastPage {
-	width: 18px;
-	cursor: default;
-	border: 1px solid #cccccc;
-	background: url(../images/common.gif) -90px -210px no-repeat;
-}
 
 div.pagination .currentPage {
 	padding: 0px 5px;

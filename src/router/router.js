@@ -8,6 +8,8 @@ import index from './../components/index'
 import order from './../components/order'
 import play from './../components/play'
 import myorder from './../components/orderList'
+import shoppage from './../components/shoppage'
+
 const routers = [
   {
     path: '/',
@@ -26,15 +28,27 @@ const routers = [
     component: order
   },{
     path: '/productList',
-    component: productList
+    name:"productList",
+    component: productList,
+    children: [
+        {path : '/shoppage/:cid', name: 'shoppage', component:shoppage},
+          {path : '/shoppage/:csid', name: 'shoppagecs', component:shoppage},
+        {path : '/shoppage/1', name: 'shoppage', component:shoppage},
+        {path : '/shoppage/2', name: 'shoppage', component:shoppage},
+        {path : '/shoppage/3', name: 'shoppage', component:shoppage},
+        {path : '/shoppage/4', name: 'shoppage', component:shoppage},
+        {path : '/shoppage/5', name: 'shoppage', component:shoppage},
+        {path : '/shoppage/6', name: 'shoppage', component:shoppage},
+        {path : '/shoppage/7', name: 'shoppage', component:shoppage},
+      ]
   },{
-    path: '/shopdetail',
+    path: '/shopdetail/:productid',
+    name:'shopdetail',
     component: shopdetail
   },{
     path: '/login',
     component: login
-  }
-  ,{
+  },{
     path: '/register',
     component: registers
   }
